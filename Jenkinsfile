@@ -6,7 +6,7 @@ pipeline {
    rtServer (
        id: 'Artifactory-1',
        url: 'http://104.198.202.49/artifactory/',
-       credentialsId: 'artifactory'
+       credentialsId: 'artifactory',
        timeout = 300
    )
    
