@@ -36,7 +36,7 @@ pipeline {
                  def uploadSpec = """{
                     "files": [{
                        "pattern": "maven/",
-                       "target": "build/"
+                       "target": "target/*.jar"
                     }]
                  }"""
 
