@@ -3,13 +3,7 @@ pipeline {
    triggers {
     pollSCM '* * * * *'
    }
-   rtServer (
-       id: 'Artifactory-1',
-       url: 'http://104.198.202.49/artifactory/',
-       credentialsId: 'artifactory',
-       timeout = 300
-   )
-   
+  
     stages {
       stage('checkout') {
          steps {
@@ -37,18 +31,17 @@ pipeline {
       
       stage('upload to artifactory') {
             steps {
-		rtDownload (
-   		serverId: 'Artifactory-1',
-    		spec: '''{
-          "files": [
-            {
-              "pattern": "maven/",
-              "target": "bazinga/",
-            }
-          ]
-	    }''',
- 
-	)
+              script { 
+                 def server = Artifactory.server 'http://104.198.202.49/artifactory/'
+                 def uploadSpec = """{
+                    "files": [{
+                       "pattern": "maven/",
+                       "target": "build/"
+                    }]
+                 }"""
+
+                 server.upload(uploadSpec) 
+               }
             }
         }
     }  
