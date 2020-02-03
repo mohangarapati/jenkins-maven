@@ -32,7 +32,7 @@ pipeline {
       stage('upload to artifactory') {
             steps {
               script { 
-                 def server = Artifactory.server 'arti-1', credentialsId: 'artifactory'
+                 def server = Artifactory.newServer url: 'http://104.198.202.49/artifactory/', credentialsId: 'artifactory'
                  def uploadSpec = """{
                     "files": [{
                        "pattern": "target/*.jar",
