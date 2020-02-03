@@ -32,7 +32,7 @@ pipeline {
       stage('upload to artifactory') {
             steps {
               script { 
-                 def server = Artifactory.server 'http://104.198.202.49/artifactory/'
+                 def server = Artifactory.server 'arti-1'
                  def uploadSpec = """{
                     "files": [{
                        "pattern": "maven/",
