@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
-      }
+      
    //   stage('upload to artifactory') {
           //  steps {
 	//	rtDownload (
