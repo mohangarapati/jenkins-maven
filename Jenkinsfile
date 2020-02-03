@@ -35,8 +35,8 @@ pipeline {
                  def server = Artifactory.server 'arti-1'
                  def uploadSpec = """{
                     "files": [{
-                       "pattern": "maven/",
-                       "target": "target/*.jar"
+                       "pattern": "target/*.jar",
+                       "target": "maven/"
                     }]
                  }"""
 
