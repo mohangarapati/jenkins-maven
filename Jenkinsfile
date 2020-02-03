@@ -2,13 +2,14 @@ pipeline {
    agent any
    triggers {
     pollSCM '* * * * *'
-  // rtServer (
-   //    id: 'Artifactory-1',
-   //    url: 'http://my-artifactory-domain/artifactory',
-   //    credentialsId: 'ccrreeddeennttiiaall'
-   //    timeout = 300
-  // )
-    }
+   }
+   rtServer (
+       id: 'Artifactory-1',
+       url: 'http://104.198.202.49/artifactory/',
+       credentialsId: 'artifactory'
+       timeout = 300
+   )
+   
     stages {
       stage('checkout') {
          steps {
@@ -34,21 +35,21 @@ pipeline {
             }
         }
       
-   //   stage('upload to artifactory') {
-          //  steps {
-	//	rtDownload (
-   	//	serverId: 'Artifactory-1',
-    	//	spec: '''{
-      //    "files": [
-          //  {
-        //      "pattern": "bazinga-repo/froggy-files/",
-      //        "target": "bazinga/",
-    //        }
-  //        ]
-//	    }''',
+      stage('upload to artifactory') {
+            steps {
+		rtDownload (
+   		serverId: 'Artifactory-1',
+    		spec: '''{
+          "files": [
+            {
+              "pattern": "maven/",
+              "target": "bazinga/",
+            }
+          ]
+	    }''',
  
-//	)
-        //    }
-      //  }
+	)
+            }
+        }
     }  
 } 
